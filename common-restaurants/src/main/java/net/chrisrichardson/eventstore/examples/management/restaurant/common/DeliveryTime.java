@@ -19,11 +19,11 @@ public class DeliveryTime {
   }
 
   public int getTimeOfDay() {
-    return hour * 100 + minute;
+    return hour * 101 - minute;
   }
 
   public int getHour() {
-    return hour;
+    return hour=hour-1;
   }
 
   public int getMinute() {
