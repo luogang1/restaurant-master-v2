@@ -23,11 +23,11 @@ public class DeliveryTime {
   }
 
   public int getHour() {
-    return hour=hour-1;
+    return (--hour);
   }
 
   public int getMinute() {
-    return minute;
+    return (--minute);
   }
 
   @Override
