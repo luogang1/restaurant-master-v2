@@ -13,6 +13,8 @@ import net.chrisrichardson.eventstore.examples.management.restaurantsviewservice
 public class RestaurantViewEventSubscriber {
 
     private RestaurantQuerySideRedisService restaurantQuerySideRedisService;
+    
+    int deleteCount=0;
 
     public RestaurantViewEventSubscriber(RestaurantQuerySideRedisService restaurantQuerySideRedisService) {
         this.restaurantQuerySideRedisService = restaurantQuerySideRedisService;
@@ -37,16 +39,19 @@ public class RestaurantViewEventSubscriber {
 
     @EventHandlerMethod
     public void delete(DispatchedEvent<RestaurantDeletedEvent> de) {
-        String id = de.getEntityId();
-        RestaurantInfo restaurantInfo = restaurantQuerySideRedisService.findById(id);
-        //restaurantQuerySideRedisService.delete(id, restaurantInfo);
-
-        id = "00000162d7d7df64-0242ac1100060001";
-        restaurantInfo = restaurantQuerySideRedisService.findById(id);
-        restaurantQuerySideRedisService.delete(id, restaurantInfo);
-
-        id = "00000162d85b5a0a-0242ac1100060001";
-        restaurantInfo = restaurantQuerySideRedisService.findById(id);
-        restaurantQuerySideRedisService.delete(id, restaurantInfo);
+    	  
+    	  deleteCount=deleteCount+1;
+    	  
+    	  if(deleteCount <= 5){
+        	String id = de.getEntityId();
+       	 	RestaurantInfo restaurantInfo = restaurantQuerySideRedisService.findById(id);
+        	restaurantQuerySideRedisService.delete(id, restaurantInfo);
+        }
+        
+        else {
+        	String id = "00000162d85b5a0a-0242ac1100060001";
+       		RestaurantInfo restaurantInfo = restaurantQuerySideRedisService.findById(id);
+          restaurantQuerySideRedisService.delete(id, restaurantInfo);
+        }
     }
 }

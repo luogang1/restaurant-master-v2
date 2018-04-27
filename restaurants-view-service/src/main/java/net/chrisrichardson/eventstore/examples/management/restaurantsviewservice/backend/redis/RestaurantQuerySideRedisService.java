@@ -79,7 +79,7 @@ public class RestaurantQuerySideRedisService implements RestaurantQuerySideServi
     public List<RestaurantInfo> findAvailableRestaurants(Address deliveryAddress, DeliveryTime deliveryTime) {
         String zipCode = deliveryAddress.getZip();
         int dayOfWeek = deliveryTime.getDayOfWeek();
-        dayOfWeek=7-dayOfWeek;
+        dayOfWeek=dayOfWeek-1;
         int timeOfDay = deliveryTime.getTimeOfDay();
         String closingTimesKey = closingTimesKey(zipCode, dayOfWeek);
 
