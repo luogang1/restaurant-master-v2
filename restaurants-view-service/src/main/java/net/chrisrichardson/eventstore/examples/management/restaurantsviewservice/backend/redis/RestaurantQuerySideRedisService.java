@@ -87,8 +87,7 @@ public class RestaurantQuerySideRedisService implements RestaurantQuerySideServi
         else {
          	dayOfWeek=dayOfWeek;
         }
-        
-        dayOfWeek=dayOfWeek-1;
+
         int timeOfDay = deliveryTime.getTimeOfDay();
         String closingTimesKey = closingTimesKey(zipCode, dayOfWeek);
 
